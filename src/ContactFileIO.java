@@ -17,6 +17,8 @@ public class ContactFileIO {
         List<String> Lines;
         List<Contacts> contactsList = new ArrayList<>();
 
+
+
         while (true) {
             System.out.println("1. View Contacts \n2. Add new contact \n3. Search contact by name \n4. Delete an existing contact. \n5. Exit \nEnter an option (1, 2, 3, 4, or 5)");
 
@@ -43,7 +45,7 @@ public class ContactFileIO {
                     String contactName = scn.nextLine();
                     System.out.println("Enter contact number");
                     String contactNumber = scn.nextLine();
-                    String contactFormat = String.format("%s: %s", contactName, contactNumber);
+                    String contactFormat = String.format("%s: %s-%s-%s", contactName, contactNumber.substring(0, 3), contactNumber.substring(3, 6), contactNumber.substring(6, 10));
                     Files.write(filepath, Arrays.asList(contactFormat), StandardOpenOption.APPEND);
                     Lines.add(contactFormat);
                     contactsList.add(new Contacts(contactName, contactNumber));
