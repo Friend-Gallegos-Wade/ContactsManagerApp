@@ -1,3 +1,5 @@
+package src;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,7 +21,6 @@ public class ContactFileIO {
         } for (String Line : Lines) {
             contactsList.add(new Contacts());
         }
-
     }
 
 }

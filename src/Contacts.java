@@ -1,3 +1,4 @@
+package src;
 public class Contacts {
     private String name;
     private String number;
@@ -34,5 +35,3 @@ public class Contacts {
         this.number = number;
     }
 }
-
-
