@@ -24,6 +24,9 @@ public class ContactFileIO {
                 Lines = Files.readAllLines(filepath);
                 for (String Line : Lines) {
                     contactsList.add(new Contacts());
+                    if (Line.equalsIgnoreCase("")) {
+                        continue;
+                    }
                     System.out.println(Line);
                 }
             } catch (IOException i) {
@@ -42,9 +45,9 @@ public class ContactFileIO {
                 Files.write(filepath, Arrays.asList(contactFormat), StandardOpenOption.APPEND);
                 Lines.add(contactFormat);
                 contactsList.add(new Contacts(contactName, contactNumber));
-                for (Contacts contact: contactsList) {
-                    System.out.println(contact);
-                }
+//                for (Contacts contact: contactsList) {
+//                    System.out.println(contact);
+//                }
             } catch (IOException o) {
                 o.printStackTrace();
             }
@@ -54,6 +57,34 @@ public class ContactFileIO {
                 Lines = Files.readAllLines(filepath);
                 System.out.println("Enter the name you'd like to search");
                 scn.nextLine();
+                String nameSearch = scn.nextLine();
+                for (String Line : Lines) {
+                    contactsList.add(new Contacts());
+                    if (Line.contains(nameSearch) == true) {
+                        System.out.println(Line);
+                    }
+                }
+            } catch (IOException o) {
+                o.printStackTrace();
+            }
+        }
+        if (input == 4) {
+            try {
+                Lines = Files.readAllLines(Paths.get("data", "contacts.txt"));
+                List<String> newList = new ArrayList<>();
+                System.out.println("Enter a contact you'd like to delete");
+                scn.nextLine();
+                String deleteName = scn.nextLine();
+                for (String Line : Lines) {
+                    if (Line.contains(deleteName) == true) {
+                        newList.add("");
+                        continue;
+                    }
+                    newList.add(Line);
+                }
+                Files.write(Paths.get("data", "contacts.txt"), newList);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
